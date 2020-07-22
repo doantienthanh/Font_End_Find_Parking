@@ -1,0 +1,12 @@
+.header{
+    width: 100%;
+    height: 1.3cm;
+    background-color: aqua;
+}
+.mapContainer {
+    position: absolute;
+    top: 1.3cm;
+    right: 0;
+    left: 5cm;
+    bottom: 0;
+    }
