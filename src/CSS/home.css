@@ -2,6 +2,8 @@
     width: 100%;
     height: 1.3cm;
     background-color: aqua;
+    box-sizing: content-box;
+    top:0;
 }
 .mapContainer {
     position: absolute;
@@ -10,9 +12,32 @@
     left: 0cm;
    height: 800px;
     }
-    .icon_menuHeder{
+.icon_menuHeder{
         font-size: 24px;
         float: right;
         margin-top: 10px;
         margin-right: 20px;
+        color: black;
     }
+.iconHeaderHome{
+    font-size: 24px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    }
+.textInHeader{
+    font-size: 20px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    }
+.link_remove:hover{
+      color: red;
+      text-decoration: none;
+    }
+.headerLeft{
+    box-sizing: content-box;
+}
+.headerRight{
+    box-sizing: content-box; 
+}
