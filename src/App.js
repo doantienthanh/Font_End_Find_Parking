@@ -42,7 +42,9 @@ class App extends Component {
          <Route path='/user/login'>
          <Login postData={this.postData}/>
          </Route>
-         <Route path='/user/register' component={Register}/>
+         <Route path='/user/register'>
+         <Register postData={this.postData}/>
+         </Route>
          <Route path='/' component={Home}/>
          </Switch>
        </Router>
