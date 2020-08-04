@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import {Link, withRouter,Redirect} from 'react-router-dom'
-import {FaUser,FaSignInAlt, FaAlignJustify,FaSignOutAlt} from 'react-icons/fa';
-import Cookies  from 'js-cookie';
- class Header extends Component {
-    constructor(){
-        super();
-        this.state={
-            profile:''
-        }
-        this.getUser=this.getUser.bind(this);
-        this.checkLogin=this.checkLogin.bind(this);
-        this.checkLogin();
-        this.logout=this.logout.bind(this);
-}
+import { Link, withRouter, Redirect } from 'react-router-dom'
+import { FaUser, FaSignInAlt, FaAlignJustify, FaSignOutAlt } from 'react-icons/fa';
+import Cookies from 'js-cookie';
+class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      profile: ''
+    }
+    this.getUser = this.getUser.bind(this);
+    this.checkLogin = this.checkLogin.bind(this);
+    this.checkLogin();
+    this.logout = this.logout.bind(this);
+  }
   // Xóa cookie
-  logout() { 
+  logout() {
     Cookies.remove('user_id');
-}
-async  getUser(url = '',checkCookie='', data = {}) {
+  }
+  async getUser(url = '', checkCookie = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -35,37 +35,38 @@ async  getUser(url = '',checkCookie='', data = {}) {
     return response.json(); // parses JSON response into native JavaScript objects
   }
 
-// Kiểm tra xem user có đã login hay chưa
-  checkLogin(){
-    var checkCookie=Cookies.get('user_id');
-    if(checkCookie!==''){
-        this.getUser('http://127.0.0.1:8000/api/user/getProfile',checkCookie)
-        .then(d=>{
-           this.setState({profile:d.user.name});
-        }); 
-    }else{
-        this.setState({profile:''});
+  // Kiểm tra xem user có đã login hay chưa
+  checkLogin() {
+    var checkCookie = Cookies.get('user_id');
+    if (checkCookie !== '') {
+      this.getUser('http://127.0.0.1:8000/api/user/getProfile', checkCookie)
+        .then(d => {
+          this.setState({ profile: d.user.name });
+        });
+    } else {
+      this.setState({ profile: '' });
     }
   }
 
-      render() {
-        var profiled=this.state.profile;
-        var btnLogin;
-        var btnRegister;
-        if(profiled===''){
-          btnLogin=<Link className="link_remove"  to="/user/login"><FaUser className="icon_menuHeder"></FaUser>  </Link>;
-          btnRegister=<Link className="link_remove" to="/user/register"><FaSignInAlt className="icon_menuHeder"> </FaSignInAlt></Link>;
-        }else{
-           btnLogin=<div className="icon_menuHeder"><b className="nameOfuser">{profiled}</b></div>;
-           btnRegister=<a className="link_remove" href="/"><FaSignOutAlt className="icon_menuHeder" onClick={this.logout}/></a>
-        }
-        return (
-            <div className="header">
-                 <FaAlignJustify className="iconHeaderHome"/>&ensp;&ensp;&ensp;<span className="textInHeader"><b>PARKING FREE</b></span>
-                 {btnRegister}
-                 {btnLogin}
-            </div>
-        )
+
+  render() {
+    var profiled = this.state.profile;
+    var btnLogin;
+    var btnRegister;
+    if (profiled === '') {
+      btnLogin = <Link className="link_remove" to="/user/login"><FaUser className="icon_menuHeder"></FaUser>  </Link>;
+      btnRegister = <Link className="link_remove" to="/user/register"><FaSignInAlt className="icon_menuHeder"> </FaSignInAlt></Link>;
+    } else {
+      btnLogin = <div className="icon_menuHeder"><b className="nameOfuser">{profiled}</b></div>;
+      btnRegister = <a className="link_remove" href="/"><FaSignOutAlt className="icon_menuHeder" onClick={this.logout} /></a>
     }
+    return (
+      <div className="header">
+        <FaAlignJustify className="iconHeaderHome" />&ensp;&ensp;&ensp;<span className="textInHeader"><b>PARKING FREE</b></span>
+        {btnRegister}
+        {btnLogin}
+      </div>
+    )
+  }
 }
 export default withRouter(Header);

@@ -9,16 +9,22 @@ import {
 // import components
 import Home from './components/Home/Home';
 import Login from './components/Auth/Login';
-import Register from'./components/Auth/Register';
+import Register from './components/Auth/Register';
 // import Css
 import './CSS/auth.css';
 import './CSS/home.css';
-class App extends Component { 
-  constructor(){
+import './CSS/Dashboard.css';
+import Dashboard from './components/CarKeeper/Dashboard';
+import Profile from './components/CarKeeper/Profile';
+import AddParking from './components/CarKeeper/AddParking';
+import Parking from './components/CarKeeper/Parking';
+import Setting from './components/CarKeeper/Setting';
+class App extends Component {
+  constructor() {
     super();
-    this.postData=this.postData.bind(this);
+    this.postData = this.postData.bind(this);
   }
-  async  postData(url = '', data = {}) {
+  async postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -37,17 +43,32 @@ class App extends Component {
   }
   render() {
     return (
-       <Router>
-         <Switch>
-         <Route path='/user/login'>
-         <Login postData={this.postData}/>
-         </Route>
-         <Route path='/user/register'>
-         <Register postData={this.postData}/>
-         </Route>
-         <Route path='/' component={Home}/>
-         </Switch>
-       </Router>
+      <Router>
+        <Switch>
+          <Route path='/user/login'>
+            <Login postData={this.postData} />
+          </Route>
+          <Route path='/user/register'>
+            <Register postData={this.postData} />
+          </Route>
+          <Route path="/user/keeper/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/user/keeper/add">
+            <AddParking />
+          </Route>
+          <Route path="/user/keeper/profile">
+            <Profile />
+          </Route>
+          <Route path="/user/keeper/parking">
+            <Parking />
+          </Route>
+          <Route path="/user/keeper/setting">
+            <Setting />
+          </Route>
+          <Route path='/' component={Home} />
+        </Switch>
+      </Router>
     )
   }
 }
