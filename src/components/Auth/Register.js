@@ -61,10 +61,10 @@ class Register extends Component {
                   <span><FaAddressCard className="user-text" /><input type="text" name="address" className="input-text" placeholder="Enter your address" /></span><br />
                   <span><FaUserShield className="user-text" />
                     <select className="input-text" name="position">
-                      <option value="grapefruit">Grapefruit</option>
-                      <option value="lime">Lime</option>
+                      <option value="cars user">cars user</option>
+                      <option value="keeper parking">kepper parking</option>
                     </select></span> <br></br>
-                  <b className="error">{this.state.errorEmail}</b>
+                   <b className="error">{this.state.errorEmail}</b>
                   <span><FaEnvelope className="user-text" /><input type="email" name="email" className="input-text" placeholder="Enter your email" /></span><br />
                   <span><FaLock className="user-text" /><input type="password" name="password" className="input-text" placeholder="Enter your password" /></span><br />
                   <span><FaLock className="user-text" /><input type="password" name="passwordConfirm" className="input-text" placeholder="confirm your password" /></span><br />

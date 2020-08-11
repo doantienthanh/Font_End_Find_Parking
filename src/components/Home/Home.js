@@ -3,9 +3,6 @@ import Header from './Header';
 import MapMain from './MapMain';
 import Bottom from './Bottom';
 export default class Home extends Component {
-    constructor() {
-        super();
-    }
     render() {
         return (
             <div className="homePage">

@@ -12,7 +12,7 @@ export default class Profile extends Component {
             <MenuDashboard />
           </div>
           <div className="center-body-dashboard">
-            profile
+dffdfd
           </div>
         </div>
         <Bottom />

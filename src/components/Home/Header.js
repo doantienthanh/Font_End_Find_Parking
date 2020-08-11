@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, withRouter, Redirect } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { FaUser, FaSignInAlt, FaAlignJustify, FaSignOutAlt } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 class Header extends Component {
@@ -47,8 +47,6 @@ class Header extends Component {
       this.setState({ profile: '' });
     }
   }
-
-
   render() {
     var profiled = this.state.profile;
     var btnLogin;
@@ -62,7 +60,7 @@ class Header extends Component {
     }
     return (
       <div className="header">
-        <FaAlignJustify className="iconHeaderHome" />&ensp;&ensp;&ensp;<span className="textInHeader"><b>PARKING FREE</b></span>
+      <Link to="/" className="link_remove"><FaAlignJustify className="iconHeaderHome" />&ensp;&ensp;&ensp;<span className="textInHeader"><b>PARKING FREE</b></span></Link>
         {btnRegister}
         {btnLogin}
       </div>

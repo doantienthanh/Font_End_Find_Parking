@@ -7,6 +7,9 @@
 .left-body-dashboard{
 width: 13%;
 }
+.center-body-dashboard{
+  width: 87%;
+}
 /* Menu dashboard */
 .body-Dashboard{
   display: flex;
@@ -31,4 +34,42 @@ width: 13%;
 }
 .item-menu{
   color: white;
+}
+/* Add Parking*/
+.body-addParking{
+  width: 60%;
+  margin-left: 20%;
+  text-align: center;
+}
+.title-addParking{
+  margin-top: 20px;
+}
+.form-addParking{
+  box-sizing: border-box;
+}
+.input-addParking{
+  width: 80%;
+  height: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+  border: 1px solid #616161;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+}
+.btn-addParking{
+  border: none;
+  margin-top: 20px;
+  width: 60%;
+  height: 1cm;
+  outline: none;
+  background-color: cyan;
+  font-size: 24px;
+  color: black;
+}
+.btn-addParking:hover{
+width: 65%;
+height: 1.2cm;
+color: red;
+font-size: 26px;
 }
