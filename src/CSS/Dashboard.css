@@ -49,13 +49,15 @@ width: 13%;
 }
 .input-addParking{
   width: 80%;
-  height: 30px;
+  height: 40px;
   font-size: 20px;
   margin-top: 20px;
-  border: 1px solid #616161;
+  border: 1px solid skyblue;
   outline: none;
-  border: none;
-  border-bottom: 1px solid black;
+  border-radius: 2%;
+}
+.description{
+  height: 100px;
 }
 .btn-addParking{
   border: none;
@@ -72,4 +74,45 @@ width: 65%;
 height: 1.2cm;
 color: red;
 font-size: 26px;
+}
+.error-addParking{
+  font-size: 24px;
+  color:red;
+}
+/* PARKING */
+.table-parking{
+  box-sizing: border-box;
+  border: 2px solid #616161;
+  width: 80%;
+  margin-top:50px;
+margin-left: 10%;
+text-align: center;
+border-collapse: collapse;
+}
+.row-table{
+  box-sizing: border-box;
+  border-top: 1px solid #616161;
+ height: 60px;
+}
+.row-table:hover{
+  background-color: #f5f5f5;
+}
+.content-table{
+  border-bottom: 1px solid #ddd;
+}
+.btn{
+  height: 0.9cm;
+  width: 100px;
+  border:none;
+  outline:none;
+  font-size: 24px;
+}
+.btn-delete{
+  background-color: red;
+  color:white;
+
+}
+.btn-update{
+  background-color: skyblue;
+  color:white;
 }

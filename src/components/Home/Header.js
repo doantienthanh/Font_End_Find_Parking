@@ -40,8 +40,8 @@ class Header extends Component {
     var checkCookie = Cookies.get('user_id');
     if (checkCookie !== '') {
       this.getUser('http://127.0.0.1:8000/api/user/getProfile', checkCookie)
-        .then(d => {
-          this.setState({ profile: d.user.name });
+        .then(data => {
+          this.setState({ profile: data.user.name });
         });
     } else {
       this.setState({ profile: '' });

@@ -19,6 +19,7 @@ import Profile from './components/CarKeeper/Profile';
 import AddParking from './components/CarKeeper/AddParking';
 import Parking from './components/CarKeeper/Parking';
 import Setting from './components/CarKeeper/Setting';
+import Update from './components/CarKeeper/Update';
 class App extends Component {
   constructor() {
     super();
@@ -41,10 +42,14 @@ class App extends Component {
     });
     return response.json(); // parses JSON response into native JavaScript objects
   }
-  render() {
+
+  render(){
     return (
       <Router>
         <Switch>
+         <Route path='/user/keeper/:id/edit'>
+            <Update />
+          </Route>
           <Route path='/user/login'>
             <Login postData={this.postData} />
           </Route>
@@ -55,18 +60,20 @@ class App extends Component {
             <Dashboard />
           </Route>
           <Route path="/user/keeper/add">
-            <AddParking />
+            <AddParking postData={this.postData}/>
           </Route>
           <Route path="/user/keeper/profile">
             <Profile />
           </Route>
           <Route path="/user/keeper/parking">
-            <Parking />
+            <Parking postData={this.postData}/>
           </Route>
           <Route path="/user/keeper/setting">
             <Setting />
           </Route>
-          <Route path='/' component={Home} />
+          <Route path='/'>
+          <Home />
+          </Route>
         </Switch>
       </Router>
     )
