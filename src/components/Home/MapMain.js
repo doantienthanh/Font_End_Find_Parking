@@ -1,7 +1,6 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl'; 
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import {FaMapMarkerAlt} from 'react-icons/fa';
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhhbmhkb2FuMjAwNTIwIiwiYSI6ImNrY3Zlcng5bTAza2EydmxhMGd0eWtid3QifQ.MW372Vs4owkKB0zLcVRfTw';
 export default class MapMain extends React.Component {
     _isMounted = false;
@@ -45,6 +44,7 @@ export default class MapMain extends React.Component {
         });
         this.searchPlace(map);
         // this.searchParks(map);
+        // this.createSearchForm(map);
         this.fullscreenControl(map);
         this.mapMove(map);
         // this.mapOnclick(map);
@@ -62,6 +62,7 @@ export default class MapMain extends React.Component {
         var el = document.createElement('img');
         el.className = 'markerParks';
         el.src ='https://png.pngtree.com/png-clipart/20190614/original/pngtree-vector-parking-sign-icon-png-image_3767413.jpg';
+        el.title=element.name;
         const address=JSON.parse(element.address);
          const lng=address.lng;
          const lat =address.lat;
@@ -91,13 +92,26 @@ export default class MapMain extends React.Component {
             });
             map.addControl(geocoder);  
     }
-    searchParks(map){
-        var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-           
-            });
-            map.addControl(geocoder);  
-            geocoder.className="searchParks" 
+    searchParks(event){
+        event.preventDefault();
+        var nameSearch = event.target["name"].value;
+        var input={
+            inpuSearch:nameSearch
+        }
+        fetch('http://127.0.0.1:8000/api/user/search',{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body:JSON.stringify(input)
+        })
+        .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+                    // this.setState({listParks:data});
+                    console.log(data);
+        });
     }
     fullscreenControl(map) {
         map.addControl(new mapboxgl.FullscreenControl());
@@ -112,26 +126,16 @@ export default class MapMain extends React.Component {
             });
         });
     }
-    // mapOnclick(map) {
-    //     map.on('click', function (e) {
-    //         fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/"+e.lngLat.lng+','+e.lngLat.lat+ ".json?access_token=pk.eyJ1IjoidGhhbmhkb2FuMjAwNTIwIiwiYSI6ImNrY3Zlcng5bTAza2EydmxhMGd0eWtid3QifQ.MW372Vs4owkKB0zLcVRfTw")
-    //             .then((response) => {
-    //                 return response.json()
-    //             })
-    //             .then(response => {
-    //                 console.log(response.features[0].place_name);
-    //             });
-    //         var marker = new mapboxgl.Marker()
-    //             .setLngLat([e.lngLat.lng, e.lngLat.lat])
-    //             .addTo(map);
-    //     });
-    // }
+
 
     render() {
     
         return (
-            <div>
-                <div ref={el => this.mapContainer = el} className='mapContainer' />
+            <div className="mainMap">
+             <form className="formSearch" onSubmit={this.searchParks}>
+              <input className='inpuSearch' name='searchParks' placeholder='search parking here'/> 
+              </form>
+               <div  ref={el => this.mapContainer = el} className='mapContainer'/>
             </div>
         )
     }

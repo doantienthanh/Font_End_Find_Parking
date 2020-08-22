@@ -16,8 +16,8 @@ import { withRouter } from "react-router-dom";
   }
   addParking(event) {
     event.preventDefault();
-    // var id_user=Cookies.get('user_id');
-    var id_user=7;
+    var id_user=Cookies.get('user_id');
+    // var id_user=1;
     var name = event.target["name"].value;
     var add = event.target["address"].value;
     var area = event.target["area"].value;
@@ -43,9 +43,9 @@ import { withRouter } from "react-router-dom";
               price: price,
               description: description,
             })
-            .then((response) => {
+            .then((response) =>{
+              console.log(response);
              if(response.status===200){
-              //  alert(response.message);
               this.props.history.push('/user/keeper/parking');
              }else{
              this.setState({error:response.message,function () {
